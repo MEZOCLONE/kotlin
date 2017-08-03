@@ -56,9 +56,3 @@ tasks.withType(Test) {
         }
     }
 }
-
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
-}

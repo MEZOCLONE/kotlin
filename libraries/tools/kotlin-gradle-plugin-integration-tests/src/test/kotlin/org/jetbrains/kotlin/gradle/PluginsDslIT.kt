@@ -6,7 +6,6 @@ import org.junit.AssumptionViolatedException
 import org.junit.Test
 import java.io.File
 import javax.xml.parsers.DocumentBuilderFactory
-import kotlin.coroutines.experimental.buildSequence
 
 /** Copies the logic of Gradle [`mavenLocal()`](https://docs.gradle.org/3.4.1/dsl/org.gradle.api.artifacts.dsl.RepositoryHandler.html#org.gradle.api.artifacts.dsl.RepositoryHandler:mavenLocal())
  */
@@ -40,13 +39,11 @@ private object MavenLocalUrlProvider {
 
     /** The URL that points to the Gradle's mavenLocal() repository. */
     val mavenLocalUrl by lazy {
-        val paths = buildSequence {
-            yield(propertyMavenLocalRepoPath)
-            yield(homeSettingsLocalRepoPath)
-            yield(m2HomeSettingsLocalRepoPath)
-            yield(defaultM2RepoPath)
-        }
-        File(paths.filterNotNull().first()).toURI().toString()
+        val path = propertyMavenLocalRepoPath ?:
+                homeSettingsLocalRepoPath ?:
+                m2HomeSettingsLocalRepoPath ?:
+                defaultM2RepoPath
+        File(path).toURI().toString()
     }
 }
 
