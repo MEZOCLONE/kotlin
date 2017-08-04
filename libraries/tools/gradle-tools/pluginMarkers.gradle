@@ -33,8 +33,8 @@ ext.pluginMarkerProject = { String pluginProjectId ->
             }
         }
 
+        // Publish each gradle plugin marker under its own Maven coordinates pluginId:pluginId.gradle.plugin
         def setUpSeparateArtifact = {
-            // Publish the artifacts having this artifactName with a separate POM and Maven coordinates:
             addFilter(pluginId) { artifact, file -> artifact.name == artifactName }
             def pom = pom(pluginId)
             pom.groupId = pluginId
