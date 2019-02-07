@@ -67,4 +67,22 @@ class StringJVMTest {
         assertEquals("UTF-32LE", Charsets.UTF_32LE.name())
         assertEquals("UTF-32BE", Charsets.UTF_32BE.name())
     }
+
+    @Test fun capitalizeLocale() {
+        assertEquals("ABC", "ABC".capitalize(Locale.US))
+        assertEquals("Abc", "Abc".capitalize(Locale.US))
+        assertEquals("Abc", "abc".capitalize(Locale.US))
+
+        assertEquals("İii", "iii".capitalize(Locale("tr", "TR")))
+        assertEquals("Iii", "iii".capitalize(Locale.US))
+    }
+
+    @Test fun decapitalizeLocale() {
+        assertEquals("aBC", "ABC".decapitalize(Locale.US))
+        assertEquals("abc", "Abc".decapitalize(Locale.US))
+        assertEquals("abc", "abc".decapitalize(Locale.US))
+
+        assertEquals("ıII", "III".decapitalize(Locale("tr", "TR")))
+        assertEquals("iII", "III".decapitalize(Locale.US))
+    }
 }

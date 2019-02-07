@@ -424,8 +424,14 @@ public inline fun String.toPattern(flags: Int = 0): java.util.regex.Pattern {
  *
  * @sample samples.text.Strings.capitalize
  */
-public actual fun String.capitalize(): String {
-    return if (isNotEmpty() && this[0].isLowerCase()) substring(0, 1).toUpperCase() + substring(1) else this
+public actual fun String.capitalize() = capitalize(Locale.getDefault())
+
+/**
+ * Returns a copy of this string having its first letter uppercased using [locale], or the original string,
+ * if it's empty or already starts with an upper case letter.
+ */
+public fun String.capitalize(locale: Locale): String {
+    return if (isNotEmpty() && this[0].isLowerCase()) substring(0, 1).toUpperCase(locale) + substring(1) else this
 }
 
 /**
@@ -434,8 +440,14 @@ public actual fun String.capitalize(): String {
  *
  * @sample samples.text.Strings.decapitalize
  */
-public actual fun String.decapitalize(): String {
-    return if (isNotEmpty() && this[0].isUpperCase()) substring(0, 1).toLowerCase() + substring(1) else this
+public actual fun String.decapitalize() = decapitalize(Locale.getDefault())
+
+/**
+ * Returns a copy of this string having its first letter lowercased using [locale], or the original string,
+ * if it's empty or already starts with a lower case letter.
+ */
+public fun String.decapitalize(locale: Locale): String {
+    return if (isNotEmpty() && this[0].isUpperCase()) substring(0, 1).toLowerCase(locale) + substring(1) else this
 }
 
 /**
