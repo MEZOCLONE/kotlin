@@ -143,6 +143,9 @@ public class IntrinsicMethods {
         declareIntrinsicFunction(FQ_NAMES.string, "plus", 1, new Concat());
         declareIntrinsicFunction(FQ_NAMES.string, "get", 1, new StringGetChar());
 
+        intrinsicsMap.registerIntrinsic(TEXT_PACKAGE_FQ_NAME, FQ_NAMES.string, "trimMargin", 1, new TrimMargin());
+        intrinsicsMap.registerIntrinsic(TEXT_PACKAGE_FQ_NAME, FQ_NAMES.string, "trimIndent", 0, new TrimIndent());
+
         declareIntrinsicFunction(FQ_NAMES.cloneable, "clone", 0, CLONE);
 
         intrinsicsMap.registerIntrinsic(BUILT_INS_PACKAGE_FQ_NAME, KotlinBuiltIns.FQ_NAMES.any, "toString", 0, TO_STRING);
